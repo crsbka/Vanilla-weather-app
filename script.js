@@ -32,6 +32,7 @@ let dateEl = document.querySelector("#current-date");
 let currentTime = new Date();
 dateEl.innerHTML = formatDate(currentTime);
 
+
 //Challenge 2
 
 //Search btn
@@ -105,17 +106,27 @@ function updateWeatherInfo(response) {
     let mainTemp = document.querySelector("#main-temperature");
     mainTemp.innerHTML = temp;
     celTemp = temp;
+
+    //Weather icon
+
+    let iconElement = document.querySelector("#main-icon");
+    iconElement.setAttribute ("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+
 }
 
 //Challenge 3
 
 function showCelTemp() {
     let tempSpan = document.querySelector("#main-temperature");
+    celsiusLink.classList.add("active");
+    farenhLink.classList.remove("active");
     tempSpan.innerHTML = "" + celTemp;
 }
 
 function showFarTemp() {
     let tempSpan = document.querySelector("#main-temperature");
+    celsiusLink.classList.remove("active");
+    farenhLink.classList.add("active");
     let farTemp = Math.round((celTemp * 9) / 5 + 32);
     tempSpan.innerHTML = "" + farTemp;
 }

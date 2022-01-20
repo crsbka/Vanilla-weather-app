@@ -28,7 +28,7 @@ button {
     color: #6d76ab;
 }
 
-#rain{
+#main-icon{
     float: right;
     width: 100px;
 }
@@ -138,7 +138,7 @@ button {
     color: #6d76ab;
 }
 
-#float-left-temp {
+#weather-temp {
     margin: -26px 0px 0px -7px;
 }
 
@@ -154,4 +154,13 @@ a {
 }
 #current-info{
     padding: 8px 15px 10px 22px;
+}
+.active {
+    color: black;
+    cursor: default;
+}
+
+.active:hover{
+    text-decoration: none;
+
 }
