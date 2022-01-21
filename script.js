@@ -110,7 +110,7 @@ function updateWeatherInfo(response) {
     //Weather icon
 
     let iconElement = document.querySelector("#main-icon");
-    iconElement.setAttribute ("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+    iconElement.setAttribute ("src", `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 
 }
 
