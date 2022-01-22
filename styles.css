@@ -99,17 +99,9 @@ button {
 }
 
 .weather-forecast {
-    border-style: groove;
-    border-radius: 7px;
-    background-color: rgba(255, 255, 255, 0.5);
     text-align: center;
-
 }
 
-.weather-forecast:hover{
-    background-color: #d2d3e0;
-
-}
 
 .current-conditions-text {
     font-size: 16px;

@@ -69,15 +69,32 @@ function getApiResultAndUpdateHtml(apiUrl) {
     axios.get(apiUrl).then(updateWeatherInfo);
 }
 
-function getForecast(coordinates){
+function getForecast(coordinates) {
     let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&units=metric&appid=${apiKey}`;
-    console.log(apiUrl);
     axios.get(apiUrl).then(displayForecast);
 }
 
-function displayForecast(){
+function displayForecast(response) {
+    console.log(response.data.daily);
+    let forecastElement = document.querySelector("#forecast");
 
+    let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    let forecastHTML = `<div class="row">`;
 
+    days.forEach(function(day){
+        forecastHTML = forecastHTML +
+         `<div class="col-2">
+        <div class="weekdays">${day}</div>
+        <i class="fas fa-cloud-sun icon float-center"></i>
+        <div class="max-min-temp-forecast">
+            <span class="max-temp">18°</span>
+            <span class="min-temp">7°</span>
+        </div>
+    </div>`;
+    });
+
+    forecastHTML = forecastHTML + `</div>`;
+    forecastElement.innerHTML = forecastHTML;
 }
 
 function updateWeatherInfo(response) {
