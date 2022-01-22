@@ -98,16 +98,15 @@ button {
     color: #6d76ab;
 }
 
-.days-forecast {
+.weather-forecast {
     border-style: groove;
     border-radius: 7px;
-    margin: 10px 0px 10px 20px;
     background-color: rgba(255, 255, 255, 0.5);
     text-align: center;
 
 }
 
-.days-forecast:hover{
+.weather-forecast:hover{
     background-color: #d2d3e0;
 
 }

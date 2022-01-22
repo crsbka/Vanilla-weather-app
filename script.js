@@ -33,9 +33,7 @@ let currentTime = new Date();
 dateEl.innerHTML = formatDate(currentTime);
 
 
-//Challenge 2
-
-//Search btn
+//Search btn(when input the city name and click the btn-> API is calling and as a result update an HTML)
 function getWeatherByInput(event) {
     event.preventDefault();
 
@@ -49,7 +47,7 @@ function getWeatherByInput(event) {
 let searchCityButton = document.querySelector("#search-button");
 searchCityButton.addEventListener("click", getWeatherByInput);
 
-//Current location btn
+//Current location btn(when click the btn-> getCurrentPosition function runs and show position->then runs onCurrentPositionIdentified function)
 function getWeatherByCurrentLocation(event) {
     event.preventDefault();
 
@@ -59,6 +57,7 @@ function getWeatherByCurrentLocation(event) {
 let currentCityButton = document.querySelector("#current-button");
 currentCityButton.addEventListener("click", getWeatherByCurrentLocation);
 
+//when current position identified run this function which get geolocation and as a result update an HTML
 function onCurrentPositionIdentified(position) {
     let lat = position.coords.latitude;
     let lon = position.coords.longitude;
@@ -68,6 +67,17 @@ function onCurrentPositionIdentified(position) {
 
 function getApiResultAndUpdateHtml(apiUrl) {
     axios.get(apiUrl).then(updateWeatherInfo);
+}
+
+function getForecast(coordinates){
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&units=metric&appid=${apiKey}`;
+    console.log(apiUrl);
+    axios.get(apiUrl).then(displayForecast);
+}
+
+function displayForecast(){
+
+
 }
 
 function updateWeatherInfo(response) {
@@ -107,10 +117,12 @@ function updateWeatherInfo(response) {
     mainTemp.innerHTML = temp;
     celTemp = temp;
 
+    getForecast(response.data.coord);
+
     //Weather icon
 
     let iconElement = document.querySelector("#main-icon");
-    iconElement.setAttribute ("src", `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+    iconElement.setAttribute("src", `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 
 }
 
