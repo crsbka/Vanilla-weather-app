@@ -33,12 +33,20 @@ let currentTime = new Date();
 dateEl.innerHTML = formatDate(currentTime);
 
 
+//by default
+
+// function search(city){
+//
+//
+// }
+
+
+
+
 //Search btn(when input the city name and click the btn-> API is calling and as a result update an HTML)
 function getWeatherByInput(event) {
     event.preventDefault();
-
     let searchInput = document.querySelector("#city-input");
-
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput.value}&units=metric&appid=${apiKey}`;
     // common function call
     getApiResultAndUpdateHtml(apiUrl);
@@ -50,7 +58,6 @@ searchCityButton.addEventListener("click", getWeatherByInput);
 //Current location btn(when click the btn-> getCurrentPosition function runs and show position->then runs onCurrentPositionIdentified function)
 function getWeatherByCurrentLocation(event) {
     event.preventDefault();
-
     navigator.geolocation.getCurrentPosition(onCurrentPositionIdentified);
 }
 
@@ -81,9 +88,9 @@ function displayForecast(response) {
     let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     let forecastHTML = `<div class="row">`;
 
-    days.forEach(function(day){
+    days.forEach(function (day) {
         forecastHTML = forecastHTML +
-         `<div class="col-2">
+            `<div class="col-2">
         <div class="weekdays">${day}</div>
         <i class="fas fa-cloud-sun icon float-center"></i>
         <div class="max-min-temp-forecast">
@@ -165,3 +172,6 @@ celsiusLink.addEventListener("click", showCelTemp);
 
 let farenhLink = document.querySelector("#fahrenheit-link");
 farenhLink.addEventListener("click", showFarTemp);
+
+
+// search("Toronto");
