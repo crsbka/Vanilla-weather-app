@@ -31,7 +31,8 @@ button {
 
 #main-icon{
     float: left;
-    width: 80px;
+    width: 85px;
+    margin: -5px 0 0 0;
 }
 .max-min-temp-forecast{
     font-size: 15px;
