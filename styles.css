@@ -2,7 +2,7 @@ body {
     margin-top: 50px;
     background-image: url("images/sky.jpg");
     background-size: auto;
-
+    font-family: 'DM Sans', sans-serif;
 }
 
 button {
@@ -26,14 +26,15 @@ button {
 .city-name {
     margin: 23px 29px 31px 5px;
     color: #6d76ab;
+    font-weight: bold;
 }
 
 #main-icon{
-    float: right;
-    width: 100px;
+    float: left;
+    width: 80px;
 }
 .max-min-temp-forecast{
-    font-size: 20px;
+    font-size: 15px;
     color: #6d76ab;
     text-align: center;
 
@@ -50,7 +51,7 @@ button {
 
 .search-btn:hover {
     color: #fff;
-    background-color: #bfc4f5;
+    background-color: #6d76ab;
     border-color: #bfc4f5;
 }
 
@@ -61,7 +62,7 @@ button {
 
 .current-btn:hover {
     color: #fff;
-    background-color: #bfc4f5;
+    background-color: #6d76ab;
     border-color: #bfc4f5;
 }
 
@@ -135,10 +136,11 @@ button {
 .main-temperature {
     font-size: 60px;
     color: #6d76ab;
+    margin: 16px 11px 18px 17px;
 }
 
 #weather-temp {
-    margin: -26px 0px 0px -7px;
+    margin: -10px 0px 0px -7px;
 }
 
 a {

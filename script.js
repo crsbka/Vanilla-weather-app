@@ -32,37 +32,38 @@ let dateEl = document.querySelector("#current-date");
 let currentTime = new Date();
 dateEl.innerHTML = formatDate(currentTime);
 
+//when open page this city will be displayed using this apiUrl
 
-//by default
-
-// function search(city){
-//
-//
-// }
-
+function searchByCity(city){
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+    getApiResultAndUpdateHtml(apiUrl);
+}
 
 
 
 //Search btn(when input the city name and click the btn-> API is calling and as a result update an HTML)
 function getWeatherByInput(event) {
     event.preventDefault();
-    let searchInput = document.querySelector("#city-input");
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchInput.value}&units=metric&appid=${apiKey}`;
-    // common function call
-    getApiResultAndUpdateHtml(apiUrl);
+    let searchInput = document.querySelector("#city-input").value;
+    searchByCity(searchInput);
 }
-
 let searchCityButton = document.querySelector("#search-button");
 searchCityButton.addEventListener("click", getWeatherByInput);
+
+
+
+
 
 //Current location btn(when click the btn-> getCurrentPosition function runs and show position->then runs onCurrentPositionIdentified function)
 function getWeatherByCurrentLocation(event) {
     event.preventDefault();
     navigator.geolocation.getCurrentPosition(onCurrentPositionIdentified);
 }
-
 let currentCityButton = document.querySelector("#current-button");
 currentCityButton.addEventListener("click", getWeatherByCurrentLocation);
+
+
+
 
 //when current position identified run this function which get geolocation and as a result update an HTML
 function onCurrentPositionIdentified(position) {
@@ -81,23 +82,35 @@ function getForecast(coordinates) {
     axios.get(apiUrl).then(displayForecast);
 }
 
+
+function formatDay(timestamp){
+    let date = new Date(timestamp * 1000);
+    let day = date.getDay();
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    return days[day];
+
+}
+
 function displayForecast(response) {
-    console.log(response.data.daily);
+    let forecast = response.data.daily;
     let forecastElement = document.querySelector("#forecast");
 
-    let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
     let forecastHTML = `<div class="row">`;
 
-    days.forEach(function (day) {
+    forecast.forEach(function (forecastDay, index) {
+        if (index < 6) {
         forecastHTML = forecastHTML +
             `<div class="col-2">
-        <div class="weekdays">${day}</div>
-        <i class="fas fa-cloud-sun icon float-center"></i>
+        <div class="weekdays">${formatDay(forecastDay.dt)}</div>
+        <img src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
+        alt=""
+        width="70"/>
         <div class="max-min-temp-forecast">
-            <span class="max-temp">18°</span>
-            <span class="min-temp">7°</span>
+            <span class="max-temp">${Math.round(forecastDay.temp.max)}°</span>
+            <span class="min-temp">${Math.round(forecastDay.temp.min)}°</span>
         </div>
-    </div>`;
+    </div>`;}
     });
 
     forecastHTML = forecastHTML + `</div>`;
@@ -147,7 +160,7 @@ function updateWeatherInfo(response) {
 
     let iconElement = document.querySelector("#main-icon");
     iconElement.setAttribute("src", `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
-
+console.log(response.data.weather[0])
 }
 
 //Challenge 3
@@ -174,4 +187,4 @@ let farenhLink = document.querySelector("#fahrenheit-link");
 farenhLink.addEventListener("click", showFarTemp);
 
 
-// search("Toronto");
+searchByCity("Toronto");
