@@ -14,11 +14,11 @@ button {
 }
 
 .container {
-    max-width: 780px;
+    max-width: 700px;
     border: 1px solid #d2b8d5;
     border-radius: 10px;
     padding: 15px;
-    background-color: rgba(136, 92, 141, 0.16);
+    background-color: rgba(194, 149, 199, 0.13);
     box-shadow:3px 2px 5px #8c9a8c;
 
 }
@@ -167,5 +167,5 @@ a {
 }
 #weather-info{
 
-margin: 10px -82px 11px 75px;
+margin: 25px -73px 5px 22px;
 }
